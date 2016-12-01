@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+<h:form>
+	<h:panelGrid columns="2">
+
+	<h:outputLabel value="Type"></h:outputLabel>
+	<h:selectOneMenu value="#{registrationBean.selectedEmployee}">
+		<f:selectItems value="#{registrationBean.typesEmployes}" var="e">
+			<f:selectItem itemLabel="e" itemValue="e"/>
+		</f:selectItems>
+	</h:selectOneMenu>
+	
+	<h:outputLabel value="CIN"></h:outputLabel>
+	<h:inputText value="#{registrationBean.employee.cin}" />
+	
+	<h:outputLabel value="Nom"></h:outputLabel>
+	<h:inputText value="#{registrationBean.employee.nom}" />
+	
+	<h:outputLabel value="Prenom"></h:outputLabel>
+	<h:inputText value="#{registrationBean.employee.prenom}" />
+
+	<h:outputLabel value="Date Naissance"></h:outputLabel>
+	<h:inputText value="#{registrationBean.employee.dateNaissance}" >
+		<f:convertDateTime pattern="M/d/yy hh:mm"/>
+	</h:inputText>
+
+
+	<h:outputLabel value="Email"></h:outputLabel>
+	<h:inputText value="#{registrationBean.employee.email}"  >
+	
+		<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"></f:validateRegex>
+	</h:inputText>
+	
+	<h:outputLabel value="Login"></h:outputLabel>
+	<h:inputText value="#{registrationBean.employee.login}" />
+
+	<h:outputLabel value="Password"></h:outputLabel>
+	<h:inputSecret value="#{registrationBean.employee.password}" >
+		<f:validateLength minimum="2" maximum="5"></f:validateLength>
+	</h:inputSecret>
+	
+	<h:commandButton action="#{registrationBean.register()}" value="Register" />
+
+
+	</h:panelGrid>
+</h:form>
+
+</body> 
+</html>
