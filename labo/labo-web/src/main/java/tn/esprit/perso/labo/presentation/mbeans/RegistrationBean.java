@@ -6,8 +6,10 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import tn.esprit.perso.labo.persistence.Admin;
 import tn.esprit.perso.labo.persistence.Employe;
@@ -71,6 +73,11 @@ public class RegistrationBean implements Serializable{
 	
 	
 	public String register(){
+		
+		if(employee.getLogin()==null){
+			FacesContext.getCurrentInstance().addMessage("idFormReg", new FacesMessage("Login obligatoire"));
+		}
+		
 		
 		System.err.println("************************" + selectedEmployee);
 		
